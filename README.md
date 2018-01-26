@@ -1,0 +1,1 @@
+This repository contains various Capstone projects and other pieces of work related to Springboard's Data Science bootcamp.
