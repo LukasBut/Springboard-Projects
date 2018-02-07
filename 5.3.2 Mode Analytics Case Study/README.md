@@ -3,7 +3,7 @@
 URL of overview: https://community.modeanalytics.com/sql/tutorial/sql-business-analytics-training/
 URL of case study: https://community.modeanalytics.com/sql/tutorial/a-drop-in-user-engagement/
 
-## My un-ordered list of hypotheses for why there was 'a drop in engagement':
+## My un-ordered list of hypotheses for why there was 'a drop in engagement'
 -Users going on holiday and not using Yammer, hence the drop in engagements.
 
 -Start of financial year is 1st April, possibly most hiring is done in the first few months of the financial year and so lots of new sign ups
@@ -23,14 +23,14 @@ was the cause of decreased engagements, if no other cause is found it could inde
 necessarily as drops or increases attributable to any reason. However, given that fluctuations are usually in the +-80 weekly_users range (excluding
 the interval April 28th-5th May) and the drop of engagement is 176 weekly users it's highly unlikely that it falls under the case of 'usual fluctuation'.
 
-## Criteria:
+## Criteria
 Given that the ethos of Yammer Analysts, notably to 'maximise the return on their time', as well as the fact that product decisions are based on 
 core engagement, retention and growth metrics it would be fair to say that the aim is to provide 'actionably insights'. So the criteria for 
 prioritising which hypothesis to test first is the order in which the most possible actionable insight could be gleemed in the shortest amount of 
 time. This means giveing a smaller priority to testing hypotheses which, even if found to be true, do not allow Yammer to increase core engagement,
 retention etc.
 
-## Given the criteria the ordered list in which the hypotheses will be tested is:
+## List of prioritised hypotheses
 1.Marketing email frequency drop/increase 
 2.Decrease in activation of accounts by Yammer. 
 3.Businesses hiring new employees, hence new Yammer users leading to the gradual increase in engagement,
@@ -39,7 +39,7 @@ but then drop is due to those users discontinuing user of Yammer.
 5.Yammer users going on holiday.
 6.No reason.
 
-## Method for testing (number corresponds to previous list element):
+## Method for testing (number corresponds to previous list element)
 1. Having identified the users with no engagement in the 'drop in engagement' period (28th July-4 August) we use the Email Events table 
 (tutorial.yammer_emails) to see if those users had more/less marketing emails than the users who did engage in that period. If so then there's a
 correlation and the drop/increase in the emails could be the cause.
