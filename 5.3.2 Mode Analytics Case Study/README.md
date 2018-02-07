@@ -1,9 +1,9 @@
-#Mode Analytics Case Study, "A Drop in Engagement"
+# Mode Analytics Case Study, "A Drop in Engagement"
 
 URL of overview: https://community.modeanalytics.com/sql/tutorial/sql-business-analytics-training/
 URL of case study: https://community.modeanalytics.com/sql/tutorial/a-drop-in-user-engagement/
 
-##My un-ordered list of hypotheses for why there was 'a drop in engagement':
+## My un-ordered list of hypotheses for why there was 'a drop in engagement':
 -Users going on holiday and not using yammer, hence the drop in engagements.
 
 -Start of financial year is 1st April, possibly most hiring is done in the first few months of the financial year and so lots of new sign ups
