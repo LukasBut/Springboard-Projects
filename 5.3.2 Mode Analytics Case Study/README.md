@@ -94,4 +94,21 @@ in engagement by a considerable amount (usual variation is +-1%, the increase is
 attempt to increase engagement (this goes in tandem with our assumption earlier on that an increased activation of user accounts leads to more 
 active users). However, once again we conclude that our initial hypothesis was false.
 
-3.
+3. Looking at the line graph produced by the 3rd query we see that there is no peak in the months of April, May, June (months 4,5,6) so our initial 
+hypothesis is false. I've inner joined on purpose for purpose of checking the hypothesis. Also 2014 hasn't got data on the last 4 months of the year.
+
+4. The 'Broken Feature' hypothesis cannot be tested using the current resources available to us. In a real life scenario it would be possible to
+ask the software developers or the IT department if there was any down time around the time of the 'drop in engagement' if so then most likely that 
+was a/the cause. The recommendation then (obviously) would be to fix the fault (technical or technological) or, if already fixed, reduce the likelihood
+of the fault occurring again.
+
+5.
+
+
+
+
+
+
+
+
+
