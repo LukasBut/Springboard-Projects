@@ -1,6 +1,7 @@
 # Mode Analytics Case Study, "A Drop in Engagement"
 
 URL of overview: https://community.modeanalytics.com/sql/tutorial/sql-business-analytics-training/
+
 URL of case study: https://community.modeanalytics.com/sql/tutorial/a-drop-in-user-engagement/
 
 ## My unordered list of hypotheses for 'a drop in engagement'
@@ -34,18 +35,16 @@ giving a smaller priority to testing hypotheses which, even if found to be true,
 1.Marketing email frequency drop/increase. 
 2.Decrease in activation of accounts by Yammer. 
 3.Businesses hiring new employees, hence new Yammer users leading to the gradual increase in engagement,
-but then drop is due to those users discontinuing user of Yammer.
+but then drop is due to those users discontinuing their use of Yammer.
 4.Broken product feature.
 5.Yammer users going on holiday.
 6.No reason.
 
 ## Method for testing (number corresponds to previous list element)
-1. Having identified the users with no engagement in the 'drop in engagement' period (28th July-4 August) we use the Email Events table 
-(tutorial.yammer_emails) to see if those users had more/less marketing emails than the users who did engage in that period. If so then there's a
-correlation and the drop/increase in the emails could be the cause.
-Given that it doesn't make sense to identify the individuals that were active during the week before the drop, but not active during the week 
+1. Given that it doesn't make sense to identify the individuals that were active during the week before the drop, but not active during the week 
 of the drop (as there are users who weren't active during the busiest week, but were active during the week of the drop, including other
-combinations of activity and non-activity of users) we have to try and find patterns across all users.
+combinations of activity and non-activity of users) we have to try and find patterns across all users and then see if 
+any variables correlate with 'active users'.
 
 2. The Users table (tutorial.yammer_users) has columns 'activated_at' and 'created_at', using which we can group the amount of new users created
 and the number of activated users each week to see if there was a noticable decline in activated users or disparity in the 2 values
@@ -68,76 +67,31 @@ have that are stopping them from meeting their goals of increasing core engageme
 which is not most likely not possible and even if it were it would take too much time, only to arrive at an insight (there is no reason for
 the drop) which is in-actionable. However, unless disproven it is a possibility and hence worth mentioning as a hypothesis.
 
-add column for was a cause or wasn't a cause (subquery to find list of user_id with no engagement in period) by checking if user_id
-is in returned subquery user_id list. 
 
-add column for number of emails in past week (2014-07-21 -- 2014-07-28) per user_id. (group by user_id).
-add column for COUNT(cause or not cause)
+## Findings After Testing Each Hypothesis
+1. All queries were limited to roughly a month before the 'engagement drop' week as if indeed the increase/decrease of Yammer emails is the
+cause, then the effect of users deciding not to engage with the product wouldn't take long (less that a week I assume).However, I kept the date range at a month
+to have enough data to spot trends. First I calculated the average amount of emails/user/week (# Emails/user). The variance was very small leading up to the 
+drop so it means that our initial hypothesis was wrong. Then I wondered if perhaps it wasn't so much the emails annoying people, but the lack of engagement with
+the emails (due to lack of relevance perhaps) that could be the cause of the drop. Having calculated the '% of Emails Interacted with' column I found
+that the proportion remained pretty much constant. So it wasn't the decreased engagement in emails that was the cause either. The scatter graphs 
+(found in the report) further reinforce this point (lack of correlation). However, after August 4th the proportion of emails interacted with
+did drop by a few percent (more so than the usual variation), but not as significant (proportion wise) as the drop in active users. I concluded that 
+emails were not the cause of the drop. It's important to note that it could have been possible to track each individual user and the amount of emails
+they get, and how they interacted with them and so on, but that would increase the complexity of the problem immensely and so for the purposes of saving
+time I was willing to make a Type 1 error in favor of testing other hypotheses.
 
-Contributed  Email Count/user classification during week
-YES
-NO
+2. Next was checking if there was a decrease in activation of Yammer accounts and whether that was the reason. Having calculated the appropriate
+columns, I made a scatter graph of the 'Activated Users' and 'Number of (Active) Users' columns and found a strong positive correlation. There were
+2 anomalies, but they both corresponded to data points after the drop. From this we can tell that the more users that Yammer activates, the more
+active users they will have. It's hard to verify that hypothesis since once again, we would need a highly computationally heavy brute force approach
+to check each user and see how often an activated user becomes an active user (one with 1 or more engagements/week) and so on. Having looked at 
+values in the 'Number of Users Activated' column we don't find a notable drop so this means that, once again, our initial hypothesis was false.
+The 'Activation %' column further reinforces this point. I've made the assumption that if accounts are activated, on average, they are activated within
+a week and so on average if an account is created in a given week it is also confirmed in that week and so it makes sense to calculate 
+'Activation %' week by week. Interestingly, for the last 2 weeks of the data in the table, the 'Activation %' values are higher following the drop
+in engagement by a considerable amount (usual variation is +-1%, the increase is 2%, 6% ). Possibly in response to the drop in engagement as an 
+attempt to increase engagement (this goes in tandem with our assumption earlier on that an increased activation of user accounts leads to more 
+active users). However, once again we conclude that our initial hypothesis was false.
 
-
-sql for problem 1:
-SELECT emails.occurred_at, emails.action, inactive.* 
-FROM (SELECT users.user_id AS "Users User ID",users.created_at, users.state,
-  events.event_type, events.occurred_at
-  FROM tutorial.yammer_users users LEFT JOIN tutorial.yammer_events events
-  ON users.user_id=events.user_id
-  WHERE events.event_type!='engagement' AND
-  (SUBSTR(events.occurred_at::VARCHAR,1,10)::date BETWEEN '2014-07-28' AND '2014-08-04')) inactive
-JOIN tutorial.yammer_emails emails ON inactive."Users User ID"=emails.user_id
-
-
-SELECT COUNT(DISTINCT events.user_id) AS "Number of Users",
-CASE WHEN events.event_type='engagement' 
-AND (SUBSTR(events.occurred_at::VARCHAR,1,10))::date 
-BETWEEN '2014-07-28' AND '2014-08-04' THEN 'Cause of drop' 
-ELSE 'Not a cause of drop' END AS "Drop Contribution",
-COUNT(emails.occurred_at) AS "Number of Emails Sent", 
-COUNT(emails.occurred_at)/COUNT(DISTINCT events.user_id) AS "Avg # of emails/user"
-FROM tutorial.yammer_events events JOIN tutorial.yammer_emails emails 
-ON events.user_id=emails.user_id 
-WHERE (SUBSTR(emails.occurred_at::VARCHAR,1,10))::date 
-BETWEEN '2014-07-21' AND '2014-07-28' GROUP BY "Drop Contribution";
-
-
-SELECT user_id AS "User ID", COUNT(occurred_at) as "Number of Emails/user in week prior"
-FROM tutorial.yammer_emails 
-WHERE SUBSTR(occurred_at::VARCHAR,1,10)::date BETWEEN '2014-07-21' AND '2014-07-27'
-GROUP BY user_id ORDER BY user_id ;
-
-
-SELECT   users.user_id
-FROM tutorial.yammer_users users JOIN tutorial.yammer_events events
-ON users.user_id=events.user_id
-WHERE (events.occurred_at BETWEEN '2014-07-28 12:00:00' AND '2014-08-04 12:00:00')
-  AND events.event_type='engagement'
-  AND users.activated_at IS NOT NULL
-
-EXCEPT
-
-SELECT  users.user_id
-FROM tutorial.yammer_users users JOIN tutorial.yammer_events events
-ON users.user_id=events.user_id
-WHERE (events.occurred_at BETWEEN '2014-08-04 12:00:00' AND '2014-08-11 12:00:00')
-  AND events.event_type='engagement'
-  AND users.activated_at IS NOT NULL
-  
-  //Template for emails/week
-  (SELECT 
-CASE WHEN occurred_at BETWEEN '2014-07-21 12:00:00' AND '2014-07-28 12:00:00'
-  THEN '2014/07/21 - 2014/07/28'
-WHEN occurred_at BETWEEN '2014-07-14 12:00:00' AND '2014-07-21 12:00:00'
-  THEN '2014/07/14 - 2014/07/21'
-WHEN occurred_at BETWEEN '2014-07-07 12:00:00' AND '2014-07-14 12:00:00'
-  THEN '2014/07/07 - 2014/07/14'
-WHEN occurred_at BETWEEN '2014-06-30 12:00:00' AND '2014-07-14 12:00:00'
-  THEN '2014/06/30 - 2014/07/07' ELSE 'Outside intervals' END AS "Week Interval",
-COUNT(1) AS "Email Count"
-FROM tutorial.yammer_emails 
-WHERE occurred_at BETWEEN '2014-06-30 12:00:00' AND '2014-08-04 12:00:00'
-GROUP BY 1 ORDER BY 1) email_stats
-  
-
+3.
