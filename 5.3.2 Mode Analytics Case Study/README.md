@@ -102,11 +102,24 @@ ask the software developers or the IT department if there was any down time arou
 was a/the cause. The recommendation then (obviously) would be to fix the fault (technical or technological) or, if already fixed, reduce the likelihood
 of the fault occurring again.
 
-5.
+5. Firstly it's important to note that we cannot tell if the user went on holiday, all we can really do is calculate time intervals between
+successive 'events' (or more formally,in the *tutorial.yammer_events* table between rows with the same *user_id*) and even that is computationally 
+heavy. I therefore decided to take the active users in the most popular week (the week before the drop in engagement) and successively check (via
+the EXCEPT keyword) how many of them were not active users during the next 4 weeks. This returned 457 users. Given that 615 users were not present
+after the innermost EXCEPT query (number of users that were present the week before the drop, but not present in the week of the drop) and the 
+previously mentioned 475 users means that only 158 users returned as active users between '2014-08-11' and '2014-09-01'. Its highly unlikely that a
+user went on holiday for longer than 3 months, so if we were to assume that the 158 users that returned did go on holiday, we are still left with
+475 users who did not come back in the next 3 weeks, but who were active users in the week before the drop in engagement. Leading us to conclude
+that the drop in engagement (of 176 active users) was not caused by users going on holiday (as the likelihood of the majority of those 176 users)
+being made up by the 140 users 'who went on holiday' is very small. It's important to consider also that while the net drop in active users was
+176, there were in total 615 users who were not active during the next week. This means that in general there is a large user turnover. 
 
+6. I included this more so as a mathematical possibility. There are 2 ways that I look at this. One is simply as there is a chance that there is no
+reason for something occurring and hence it makes to include this as a hypothesis. Second of all, the only way to argue definitively that this 
+hypothesis is false, is to exhaustively disprove every other possible reason for 'the drop in engagement'. However, this outcome is not actionable
+and hence not worth exploring in the context of a real world problem.
 
-
-
+## Final Conclusion and Suggestions
 
 
 
