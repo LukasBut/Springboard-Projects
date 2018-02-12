@@ -103,7 +103,7 @@ was a/the cause. The recommendation then (obviously) would be to fix the fault (
 of the fault occurring again.
 
 5. Firstly it's important to note that we cannot tell if the user went on holiday, all we can really do is calculate time intervals between
-successive 'events' (or more formally,in the *tutorial.yammer_events* table between rows with the same *user_id*) and even that is computationally 
+successive 'events' (or more formally, in the *tutorial.yammer_events* table between rows with the same *user_id*) and even that is computationally 
 heavy. I therefore decided to take the active users in the most popular week (the week before the drop in engagement) and successively check (via
 the EXCEPT keyword) how many of them were not active users during the next 4 weeks. This returned 457 users. Given that 615 users were not present
 after the innermost EXCEPT query (number of users that were present the week before the drop, but not present in the week of the drop) and the 
@@ -120,6 +120,22 @@ hypothesis is false, is to exhaustively disprove every other possible reason for
 and hence not worth exploring in the context of a real world problem.
 
 ## Final Conclusion and Suggestions
+
+Having disproved all of the proposed hypotheses (assuming the ones we couldn't disprove such as 'Broken Product Feature' are also false) and 
+considering the findings in 5. above it is possible that the drop is caused by users going over to Yammer's competitors. The justification for this is
+the number of previously active users not returning back to Yammer. Of course, technically it's possible that users return after 4 weeks or more, but we
+don't have the data after those 4 weeks to verify or disprove this idea and given that the product is used in a business context and is a social 
+networking tool further adds to the case that alot of users never returned after the 'drop in engagement'. Given that some did come back,
+and the fact that there isn't a decrease in the rate of new user accounts being created or activated (table of query 2 highlights this) shows that 
+the reason is external rather than Yammer screwing up in some way (as people keep signing up). The number of active users after the drop does continue
+to drop, however at a decreased rate. So the suggestion would be to study what the competitors are doing differently from before, and then depending on
+the business goals either provide an even better product or find a niche in the market. Either way Yammer needs to give another reason, or a stronger 
+reason for why people should user their product over the competitors' offerings.In general, to conclusively discard hypotheses and speed up the process
+in trying to find the cause, in a real world scenario I would first speak to Yammer's employees. This would provide alot of specific information that 
+would, in a short space of time (comparatively speaking) narrow down the possible reasons. Then I would ask for more data, database tables or other,
+so that there is minimal waste of time once analysis starts with the use of SQL.
+
+
 
 
 
