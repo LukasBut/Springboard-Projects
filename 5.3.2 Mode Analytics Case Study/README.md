@@ -32,13 +32,13 @@ hypothesis prioritisation is in the order in which the most actionable insight c
 giving a smaller priority to testing hypotheses which, even if found to be true, don't allow Yammer to increase core engagement, retention etc.
 
 ## List of prioritized hypotheses
-1.Marketing email frequency drop/increase. 
-2.Decrease in activation of accounts by Yammer. 
-3.Businesses hiring new employees, hence new Yammer users leading to the gradual increase in engagement,
+1. Marketing email frequency drop/increase. 
+2. Decrease in activation of accounts by Yammer. 
+3. Businesses hiring new employees, hence new Yammer users leading to the gradual increase in engagement,
 but then drop is due to those users discontinuing their use of Yammer.
-4.Broken product feature.
-5.Yammer users going on holiday.
-6.No reason.
+4. Broken product feature.
+5. Yammer users going on holiday.
+6. No reason.
 
 ## Method for testing (number corresponds to previous list element)
 1. Given that it doesn't make sense to identify the individuals that were active during the week before the drop, but not active during the week 
