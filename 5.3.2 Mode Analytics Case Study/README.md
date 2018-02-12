@@ -1,8 +1,8 @@
 # Mode Analytics Case Study, "A Drop in Engagement"
 
-URL of overview: https://community.modeanalytics.com/sql/tutorial/sql-business-analytics-training/
+[Case Study Overview](https://community.modeanalytics.com/sql/tutorial/sql-business-analytics-training/)
 
-URL of case study: https://community.modeanalytics.com/sql/tutorial/a-drop-in-user-engagement/
+[My chosen case study](https://community.modeanalytics.com/sql/tutorial/a-drop-in-user-engagement/)
 
 [Mode Analytics Report (My Solution)](https://modeanalytics.com/lukasbut/reports/4b3bcbbb6db7)
 
