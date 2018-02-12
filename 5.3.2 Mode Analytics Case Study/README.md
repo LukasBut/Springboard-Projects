@@ -40,13 +40,13 @@ but then drop is due to those users discontinuing their use of Yammer.
 5. Yammer users going on holiday.
 6. No reason.
 
-## Method for testing (number corresponds to previous list element)
+## Method for testing hypothesis (number corresponds to previous list element)
 1. Given that it doesn't make sense to identify the individuals that were active during the week before the drop, but not active during the week 
 of the drop (as there are users who weren't active during the busiest week, but were active during the week of the drop, including other
 combinations of activity and non-activity of users) we have to try and find patterns across all users and then see if 
 any variables correlate with 'active users'.
 
-2. The Users table (tutorial.yammer_users) has columns 'activated_at' and 'created_at', using which we can group the amount of new users created
+2. The Users table (*tutorial.yammer_users*) has columns '*activated_at*' and '*created_at*', using which we can group the amount of new users created
 and the number of activated users each week to see if there was a noticable decline in activated users or disparity in the 2 values
 not seen during the other weeks. If so, having calculated the average amount of engagements of users' in their first week after having their 
 accounts activated, we multiply that by the number of users whose accounts were not activated to see if that number can account for the drop in
