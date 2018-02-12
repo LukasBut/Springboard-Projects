@@ -46,13 +46,13 @@ of the drop (as there are users who weren't active during the busiest week, but 
 combinations of activity and non-activity of users) we have to try and find patterns across all users and then see if 
 any variables correlate with 'active users'.
 
-2. The Users table (*tutorial.yammer_users*) has columns '*activated_at*' and '*created_at*', using which we can group the amount of new users created
+2. The Users table *tutorial.yammer_users* has columns *activated_at* and *created_at*, using which we can group the amount of new users created
 and the number of activated users each week to see if there was a noticable decline in activated users or disparity in the 2 values
-not seen during the other weeks. If so, having calculated the average amount of engagements of users' in their first week after having their 
+not seen during the other weeks. If so, having calculated the average amount of engagements of users in their first week after having their 
 accounts activated, we multiply that by the number of users whose accounts were not activated to see if that number can account for the drop in
 engagement. If so, then it's very likely that the cause in the drop was due to un-activated user accounts. 
 
-3. Using the 'created_at' column we can test our hypothesis of new hires getting Yammer accounts and tracking their engagements week by week to 
+3. Using the *created_at* column we can test our hypothesis of new hires getting Yammer accounts and tracking their engagements week by week to 
 see if a noticeable proportion stopped engaging during the week (28th July-4th August). If so then it's likely our hypothesis is true.
 
 4. Though we have no data on this, in a real life scenario we could get this information on broken product features or faults and hence recommend
@@ -70,10 +70,10 @@ the drop) which is in-actionable. However, unless disproven it is a possibility 
 
 ## Findings After Testing Each Hypothesis
 1. All queries were limited to roughly a month before the 'engagement drop' week as if indeed the increase/decrease of Yammer emails is the
-cause, then the effect of users deciding not to engage with the product wouldn't take long (less that a week I assume).However, I kept the date range at a month
-to have enough data to spot trends. First I calculated the average amount of emails/user/week (# Emails/user). The variance was very small leading up to the 
+cause, then the effect of users deciding not to engage with the product wouldn't take long (less that a week I assume). However, I kept the date range at a month
+to have enough data to spot trends. First I calculated the average amount of emails/user/week (*# Emails/user*). The variance was very small leading up to the 
 drop so it means that our initial hypothesis was wrong. Then I wondered if perhaps it wasn't so much the emails annoying people, but the lack of engagement with
-the emails (due to lack of relevance perhaps) that could be the cause of the drop. Having calculated the '% of Emails Interacted with' column I found
+the emails (due to lack of relevance perhaps) that could be the cause of the drop. Having calculated the *% of Emails Interacted with* column I found
 that the proportion remained pretty much constant. So it wasn't the decreased engagement in emails that was the cause either. The scatter graphs 
 (found in the report) further reinforce this point (lack of correlation). However, after August 4th the proportion of emails interacted with
 did drop by a few percent (more so than the usual variation), but not as significant (proportion wise) as the drop in active users. I concluded that 
@@ -82,14 +82,14 @@ they get, and how they interacted with them and so on, but that would increase t
 time I was willing to make a Type 1 error in favor of testing other hypotheses.
 
 2. Next was checking if there was a decrease in activation of Yammer accounts and whether that was the reason. Having calculated the appropriate
-columns, I made a scatter graph of the 'Activated Users' and 'Number of (Active) Users' columns and found a strong positive correlation. There were
+columns, I made a scatter graph of the *Activated Users* and *Number of (Active) Users* columns and found a strong positive correlation. There were
 2 anomalies, but they both corresponded to data points after the drop. From this we can tell that the more users that Yammer activates, the more
 active users they will have. It's hard to verify that hypothesis since once again, we would need a highly computationally heavy brute force approach
 to check each user and see how often an activated user becomes an active user (one with 1 or more engagements/week) and so on. Having looked at 
-values in the 'Number of Users Activated' column we don't find a notable drop so this means that, once again, our initial hypothesis was false.
-The 'Activation %' column further reinforces this point. I've made the assumption that if accounts are activated, on average, they are activated within
+values in the *Number of Users Activated* column we don't find a notable drop so this means that, once again, our initial hypothesis was false.
+The *Activation %* column further reinforces this point. I've made the assumption that if accounts are activated, on average, they are activated within
 a week and so on average if an account is created in a given week it is also confirmed in that week and so it makes sense to calculate 
-'Activation %' week by week. Interestingly, for the last 2 weeks of the data in the table, the 'Activation %' values are higher following the drop
+*Activation %* week by week. Interestingly, for the last 2 weeks of the data in the table, the *Activation %* values are higher following the drop
 in engagement by a considerable amount (usual variation is +-1%, the increase is 2%, 6% ). Possibly in response to the drop in engagement as an 
 attempt to increase engagement (this goes in tandem with our assumption earlier on that an increased activation of user accounts leads to more 
 active users). However, once again we conclude that our initial hypothesis was false.
