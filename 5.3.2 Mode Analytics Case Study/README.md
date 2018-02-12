@@ -4,6 +4,8 @@ URL of overview: https://community.modeanalytics.com/sql/tutorial/sql-business-a
 
 URL of case study: https://community.modeanalytics.com/sql/tutorial/a-drop-in-user-engagement/
 
+[Mode Analytics Report (My Solution)](https://modeanalytics.com/lukasbut/reports/4b3bcbbb6db7)
+
 ## My unordered list of hypotheses for 'a drop in engagement'
 -Users going on holiday and not using Yammer, hence the drop in engagement.
 
