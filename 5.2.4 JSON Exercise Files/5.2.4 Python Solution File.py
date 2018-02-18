@@ -12,7 +12,7 @@ print(projects_df.info(),"\n")
 projects_df=projects_df[["mjtheme","project_name","mjtheme_namecode","theme_namecode","countryname"]]
 
 #Count how many rows (projects) each other Country appears in, then sort descending and slice top 10
-print(projects_df["countryname"].value_counts().sort_values(ascending=False)[:10],"\n")
+print("Top 10 Countries", "\n", projects_df["countryname"].value_counts().sort_values(ascending=False)[:10],"\n")
 
 #Create a list of lists of values from the mjtheme_namecode column
 list_of_lists=list(projects_df["mjtheme_namecode"].values)
@@ -35,14 +35,14 @@ unique_dict={code:name for code in major_themes["code"].unique() for name in maj
 def replace_empty_entries(row):
     return unique_dict[row["code"]]
 
+#Print output of the top 10 major project themes by count in descending order.
+print("Top 10 Major Themes", "\n", major_themes["name"].value_counts().sort_values(ascending=False)[:10], "\n")
+
 #Applying the function above to generate a column with no empty string values and convert to categorical variable to save space.
 major_themes["name"]=major_themes.apply(replace_empty_entries,axis=1).astype("category")
 
 #As required by point 3 in the exercises, here is the print output of the complete code:name DataFrame.
 print(major_themes,"\n")
-
-#Print output of the top 10 major project themes by count in descending order.
-print(major_themes.groupby("name").count().sort_values(ascending=False)[:10])
 
 
     
