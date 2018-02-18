@@ -1,11 +1,13 @@
 # Springboard JSON Exercise Document Structure
 
-## The formal description of the exercise
- sliderule_dsi_json_exercise.ipynb
+## Jupyter Notebook Solution and Exercise Formulation
+Springboard Exercise 5.2.4 Jupyter Notebook Solution.pynb
+
 ## The Data used
  world_bank_projects.json
-## The Python Solution
+ world_bank_projects_less.json
+
+ ## The Python Solution
  5.2.4 Python Solution File.py
 
-## Jupyter Notebook Solution 
-Springboard Exercise 5.2.4 Jupyter Notebook Solution.pynb
+

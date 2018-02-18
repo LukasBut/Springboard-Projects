@@ -42,7 +42,7 @@ major_themes["name"]=major_themes.apply(replace_empty_entries,axis=1).astype("ca
 print(major_themes,"\n")
 
 #Print output of the top 10 major project themes by count in descending order.
-print(major_themes["name"].value_counts().sort_values(ascending=False)[:10])
+print(major_themes.groupby("name").count().sort_values(ascending=False)[:10])
 
 
     
