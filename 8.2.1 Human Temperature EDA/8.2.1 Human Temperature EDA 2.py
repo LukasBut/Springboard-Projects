@@ -5,6 +5,8 @@ df = pd.read_csv('data/human_body_temperature.csv')
 # Importing necessary modules
 import matplotlib.pyplot as plt
 import numpy as np
+import seaborn as sns
+sns.set()
 
 #Generating arrays for the ECDF (graphing original data)
 ecdf_x=np.sort(df["temperature"])
@@ -60,3 +62,23 @@ plt.show()
 
 
 
+t_values_10_sample=np.empty(10000)
+
+for i in range(10000):
+   # to generate bootstrap replicates and store them in the array
+   simulated_sample=np.random.choice(df["temperature"], 10)
+   simulated_mean=np.mean(simulated_sample)
+   simulated_std=np.std(simulated_sample)
+   t_values_10_sample[i]=(proposed_mean - simulated_mean)/(simulated_std / np.sqrt(len(simulated_sample)))
+
+p_value_10_sample=np.sum(t_values_10_sample>actual_t_value)/len(t_values_10_sample)
+
+print("Actual t value: %f, p value (for sample of 10): %f\n" % (actual_t_value, p_value_10_sample))
+plt.hist(t_values_10_sample, bins=50, normed=True, label="Simulated t values")
+plt.xlabel("t value")
+plt.ylabel("Count")
+plt.axvline(x=actual_t_value, color="red", label="Actual t value")
+plt.legend(loc="upper left")
+plt.show()
+
+print(len(t_values_10_sample))
