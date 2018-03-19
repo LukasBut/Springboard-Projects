@@ -32,10 +32,10 @@ plt.show()
 #Calculating sample mean, standard deviation. Setting the proposed population mean.
 sample_mean=np.mean(df["temperature"])
 proposed_mean=98.6
-sample_std=np.std(df["temperature"])
+sample_std=np.std(df["temperature"], ddof=1)
 
 #Observed t value 
-actual_t_value=(proposed_mean - sample_mean)/(sample_std / np.sqrt(len(df["temperature"])))
+actual_t_value=(sample_mean - proposed_mean)/(sample_std / np.sqrt(len(df["temperature"])))
 
 #Generating array to hold t values generated from bootstrap samples (bootstrap replicates)
 t_values=np.empty(10000)
@@ -45,8 +45,8 @@ for i in range(10000):
    # to generate bootstrap replicates and store them in the array
    simulated_sample=np.random.choice(df["temperature"], len(df["temperature"]))
    simulated_mean=np.mean(simulated_sample)
-   simulated_std=np.std(simulated_sample)
-   t_values[i]=(proposed_mean - simulated_mean)/(simulated_std / np.sqrt(len(simulated_sample)))
+   simulated_std=np.std(simulated_sample, ddof=1)                                                                       
+   t_values[i]=(simulated_mean - proposed_mean)/(simulated_std / np.sqrt(len(simulated_sample)))
 
 #Calculating the p value   
 p_value=np.sum(t_values>actual_t_value)/len(t_values)
@@ -55,11 +55,10 @@ print("Actual t value: %f, p value: %f\n" % (actual_t_value, p_value))
 plt.hist(t_values, bins=50, normed=True, label="Simulated t values")
 plt.xlabel("t value")
 plt.ylabel("Probability")
-plt.xticks([x for x in range(1,11)])
+plt.xticks([-x for x in range(1,11)])
 plt.axvline(x=actual_t_value, color="red", label="Actual t value")
 plt.legend(loc="upper left")
 plt.show()
-
 
 
 t_values_10_sample=np.empty(10000)
@@ -81,4 +80,6 @@ plt.axvline(x=actual_t_value, color="red", label="Actual t value")
 plt.legend(loc="upper left")
 plt.show()
 
-print(len(t_values_10_sample))
+sns.boxplot(x="gender", y="temperature", data=df, axis=1)
+sns.swarmplot(x="gender", y="temperature", data=df, axis=1)
+plt.plot()
