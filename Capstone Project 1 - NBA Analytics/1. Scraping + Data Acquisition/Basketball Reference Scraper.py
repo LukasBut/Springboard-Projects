@@ -1,5 +1,5 @@
 """ This Python file is a web scraper for www.basketball-reference.com. It goes through the player index
-URLs (for each letter from a-z, excluding x as there is no x webpage) and extracts the individual player
+URLs (for each letter from a-z, excluding 'x' as there is no 'x' webpage) and extracts the individual player
 URLs providing that the player is a Center and started playing after 1980. The reason for this is that
 the 3 point shot was introduced in 1980. I use 'website', 'link' and 'URL' interchangeably in this doc.
 After that each player data is scraped and appended to a 'player data' dataframe which is then written
@@ -71,6 +71,7 @@ for player_link in player_links[1:]: # Creating and adding player dataframes tog
     player_df["Height"]=(float(player_soup.find("span", {"itemprop":"height"}).string[0])*0.3048 +
               float(player_soup.find("span", {"itemprop":"height"}).string[2:])*0.0254)
     
+    # Adding the draft placing of the player
     draft_link=player_soup.find("a", {"href":re.compile("/teams/.../draft.html")})
     if draft_link!=None:
         draft_string=list(draft_link.parent.stripped_strings)[2]

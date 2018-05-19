@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-with open("C:/Users/Lukas Buteliauskas/Desktop/Springboard Projects/Capstone Project 1 - NBA Analytics/Player Data.csv", "r") as player_data:
+with open("C:/Users/Lukas Buteliauskas/Desktop/Springboard Projects/Capstone Project 1 - NBA Analytics/1. Scraping + Data Acquisition/Player Data.csv", "r") as player_data:
     player_data_df=pd.read_csv(player_data)
 
 player_data_df=player_data_df.replace("-1", np.nan)
