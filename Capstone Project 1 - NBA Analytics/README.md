@@ -1,6 +1,6 @@
 # Capstone Project 1 - Comparing European and American NBA Centers
 
-# Background/Context
+## Background/Context
 The NBA has become more and more 'international' in recent years as teams have started drafting international players more often. EU Centers, or 'European Big Men'
 as they are sometimes referred to within NBA circles, have proven themselves as valuable assets and with the decreased stigma of drafting international players 
 it has become, and will continue to be, very relevant to make the right choice when choosing which player to draft.
