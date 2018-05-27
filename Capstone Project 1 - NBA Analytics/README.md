@@ -8,7 +8,7 @@ it has become, and will continue to be, very relevant to make the right choice w
 ## The Goal
 The goal of this Capstone Project is to compare the strengths and weaknesses of NBA centers originating from the US and EU countries and to
 create predictive models 'per game' statistics (Points, Assists, Rebounds, Steals and Blocks). In doing so the reader/beneficiery of this project will be more
-informed in what to expect from a certain player or groups of players in terms of the oreviously mentioned statistics.
+informed in what to expect from a certain player or groups of players in terms of the previously mentioned statistics.
 
 ## The Audience
 NBA Scouts, Coaches, General Managers, fans and even players themselves are potential audiences of this project. 
