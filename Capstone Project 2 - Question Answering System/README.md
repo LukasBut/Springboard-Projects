@@ -1,11 +1,11 @@
-# Capstone Project 2 - Question Answering System
+# Capstone Project 2 - Question Answering System with the Dynamic Memory Network
 
 ## Background/Context
-Question Answering is a topic Natural Language Processing concerned with computers answering questions posed by humans in natural language.
-There are 2 types of questions answering systems: open-domain question answering and closed-domain question answering. Closed-domain question answering is concerned
-with building systems that answer domain-specific questions, put differently, the system can only answer questions if they are can be found within some textual input
-given to the model. Thus the focus of this project is an attempt to build a 'working' textual closed-domain question answering system.
-We implement the QA system as a Dynamic Memory Network. You can find out more about open-domain QA on the wikipedia page:
+Question Answering is a topic in Natural Language Processing concerned with computers answering questions posed by humans in natural language.
+There are 2 types of Question Answering (QA) systems: open-domain question answering and closed-domain question answering. Closed-domain question answering is concerned
+with building systems that answer domain-specific questions, put differently, the system can only answer questions if they are can be found within the textual input
+given to the model (of which the questions are asked). Thus the focus of this project is an attempt to build a 'working' textual closed-domain question answering system.
+We implement the QA system as a Dynamic Memory Network. You can find out more about open-domain QA systems on the wikipedia page:
 https://en.wikipedia.org/wiki/Question_answering 
 
 ## Files and their Meanings
