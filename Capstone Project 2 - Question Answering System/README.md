@@ -9,6 +9,7 @@ We implement the QA system as a Dynamic Memory Network. You can find out more ab
 https://en.wikipedia.org/wiki/Question_answering 
 
 ## Files and their Meanings
+- **Question Answering with the Dynamic Memory Network** - slide deck regarding the project.
 - **Building the Models Train Final.ipynb** - the main Jupyter Notebook containing all of the project code
 - **Data Wrangling.ipynb** - data wrangling code
 - **Data** - folder containing the datasets used in the project (Stanford Question Answering Dataset)
